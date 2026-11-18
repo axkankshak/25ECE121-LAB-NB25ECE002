@@ -1,48 +1,49 @@
 #include <iostream>
 #include <string>
 #include <cctype>
-
 using namespace std;
 
-int main() {
-    string s1, s2;
-    int freq1[26] = {0};
-    int freq2[26] = {0};
+int main()
+{
+    string s;
 
-    cout << "Enter first word: ";
-    cin >> s1;
+    cout << "Enter a word: ";
+    cin >> s;
 
-    cout << "Enter second word: ";
-    cin >> s2;
+    
+    cout << "Length: " << s.length() << endl;
 
-    if (s1.length() != s2.length()) {
-        cout << "Not an anagram" << endl;
-        return 0;
+    
+    for (char &c : s)
+    {
+        c = toupper(c);
     }
 
-    for (char ch : s1) {
-        ch = tolower((unsigned char)ch);
-        freq1[ch - 'a']++;
-    }
+    
+    cout << "Upper: " << s << endl;
 
-    for (char ch : s2) {
-        ch = tolower((unsigned char)ch);
-        freq2[ch - 'a']++;
-    }
+    
+    bool pal = true;
 
-    bool anagram = true;
-
-    for (int i = 0; i < 26; i++) {
-        if (freq1[i] != freq2[i]) {
-            anagram = false;
+    for (size_t i = 0, j = s.size() - 1; i < j; ++i, --j)
+    {
+        if (s[i] != s[j])
+        {
+            pal = false;
             break;
         }
     }
 
-    if (anagram)
-        cout << "Anagram" << endl;
+    
+    cout << s << (pal ? " IS" : " is NOT") << " a palindrome\n";
+
+    
+    size_t pos = s.find("AN");
+    
+    if (pos != string::npos)
+        cout << "'AN' found at index " << pos << endl;
     else
-        cout << "Not an anagram" << endl;
+        cout << "'AN' not found" << endl;
 
     return 0;
 }
