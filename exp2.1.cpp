@@ -1,13 +1,16 @@
 #include <iostream>
 using namespace std;
 
-double volume(double s)                  { return s * s * s; }              // cube
-double volume(double l, double w, double h) { return l * w * h; }          // cuboid
-double volume(double r, double h)        { return 3.14159 * r * r * h; }    // cylinder
+inline int square(int x) { return x * x; }        // tiny -> inline
+
+double area(double r)              { return 3.14159 * r * r; }  // circle
+int area(int l, int b)              { return l * b; }            // rectangle
+double area(double b, double h) { return 0.5 * b * h; }          // triangle
 
 int main() {
-    cout << "Cube s=3       = " << volume(3.0) << endl;
-    cout << "Cuboid 2x3x4    = " << volume(2.0, 3.0, 4.0) << endl;
-    cout << "Cylinder r=2 h=5 = " << volume(2.0, 5.0) << endl;
+    cout << "Square(6)     = " << square(6) << endl;
+    cout << "Circle r=2    = " << area(2.0) << endl;
+    cout << "Rectangle 4x5 = " << area(4, 5) << endl;
+    cout << "Triangle b=3 h=8 = " << area(3.0, 8.0) << endl;
     return 0;
 }
